@@ -5,7 +5,7 @@ public class InputActionState
 {
     public bool Triggered => action.triggered;
     public bool Released => action.WasReleasedThisFrame();
-    public bool IsPressed { get; private set; }
+    public bool IsPressed => action.IsPressed();
     public float PerformedTime { get; private set; }
     public float HoldTime
     {
@@ -33,12 +33,7 @@ public class InputActionState
     {
         if (context.started)
         {
-            IsPressed = true;
             PerformedTime = Time.time;
-        }
-        else if (context.canceled)
-        {
-            IsPressed = false;
         }
     }
 
@@ -58,4 +53,5 @@ public class InputActionState
     }
 
     public InputAction GetAction() => action;
+    }
 }
